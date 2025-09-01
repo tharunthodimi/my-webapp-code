@@ -268,12 +268,16 @@ export default function App() {
               onChange={handleChange}
               textColor="inherit"
               indicatorColor="secondary"
+              variant="scrollable"       // Enable scrolling variant
+              scrollButtons="auto"       // Show scroll buttons when needed
+              allowScrollButtonsMobile   // Enable scroll buttons on mobile too
             >
               <Tab label="Home" />
               <Tab label="Services" />
               <Tab label="About Us" />
               <Tab label="Contact Us" />
             </Tabs>
+
           </Toolbar>
         </AppBar>
 
