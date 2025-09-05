@@ -27,17 +27,12 @@ import {
   CardContent,
   CardMedia,
   Fade,
-  Slide,
-  Grow,
   Zoom,
   useScrollTrigger,
   Fab,
-  Chip,
   Divider,
   alpha,
   InputAdornment,
-  Avatar,
-  AvatarGroup,
   Paper,
 } from "@mui/material";
 import {
@@ -50,7 +45,6 @@ import {
   Email as EmailIcon,
   Phone as PhoneIcon,
   LocationOn as LocationOnIcon,
-  CheckCircle as CheckCircleIcon,
 } from "@mui/icons-material";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import emailjs from "@emailjs/browser";
@@ -169,35 +163,35 @@ const services = [
     title: "Predictive Analytics",
     description:
       "Leverage machine learning to anticipate trends and optimize decision-making.",
-      image: "/Images/data-analytics.png",
+      image: "/Images/PredictiveAnalytics.png",
       features: ["Trend Forecasting", "Pattern Recognition", "Risk Assessment", "Data Visualization"]
   },
   {
     title: "Computer Vision Solutions",
     description:
       "Implement AI-powered image and video analysis for security, quality control, and automation.",
-    image: "/Images/chatbot.png",
+    image: "/Images/ComputerVision.png",
     features: ["Object Detection", "Facial Recognition", "Image Classification", "Video Analytics"]
   },
   {
     title: "Robotic Process Automation (RPA)",
     description:
       "Automate repetitive business tasks to enhance efficiency and reduce operational costs.",
-    image: "/Images/chatbot.png",
+    image: "/Images/RPA.png",
     features: ["Workflow Automation", "Data Extraction", "Process Monitoring", "Integration Services"]
   },
   {
     title: "Cloud AI Services",
     description:
       "Leverage scalable cloud AI platforms for robust, secure, and flexible deployment of AI models.",
-    image: "/Images/chatbot.png",
+    image: "/Images/CloudAIServices.png",
     features: ["Model Deployment", "Scalable Infrastructure", "Data Management", "Security Features"]
   },
   {
     title: "AI Consulting & Strategy",
     description:
       "Benefit from expert advice to develop tailored AI strategies aligned with business objectives.",
-    image: "/Images/chatbot.png",
+    image: "/Images/consulting.png",
     features: ["Roadmap Planning", "Use Case Identification", "Technology Selection", "Change Management"]
   },
 ];
