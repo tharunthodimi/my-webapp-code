@@ -1181,9 +1181,9 @@ const ServicesSection = () => {
                 <List dense disablePadding>
                   {services.map((service) => (
                     <ListItem key={service.title} disablePadding sx={{ mb: 1 }}>
-                      <Link href="#" color="text.secondary" underline="hover" sx={{ cursor: "pointer" }}>
+                      <Typography variant="body2" color="text.secondary">
                         {service.title}
-                      </Link>
+                      </Typography>
                     </ListItem>
                   ))}
                 </List>
