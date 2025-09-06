@@ -201,7 +201,7 @@ const services = [
 
 const teamMembers = [
   {
-    name: "Keshava",
+    name: "Keshava ",
     role: "CEO & Founder",
     // photo: "https://randomuser.me/api/portraits/women/44.jpg",
     linkedin: "https://linkedin.com/in/sarahjohnson",
