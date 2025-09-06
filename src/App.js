@@ -203,7 +203,7 @@ const teamMembers = [
   {
     name: "Keshava",
     role: "CEO & Founder",
-    photo: "https://randomuser.me/api/portraits/women/44.jpg",
+    // photo: "https://randomuser.me/api/portraits/women/44.jpg",
     linkedin: "https://linkedin.com/in/sarahjohnson",
     bio: "15+ years experience in software development."
   },
