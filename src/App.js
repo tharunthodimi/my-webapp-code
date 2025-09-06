@@ -5,6 +5,8 @@ import PeopleIcon from '@mui/icons-material/People';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 
+import { Container, Grid } from "@mui/material";
+
 import {
   AppBar,
   Toolbar,
@@ -16,8 +18,6 @@ import {
   ListItemButton,
   ListItemText,
   Box,
-  Container,
-  Grid,
   Tabs,
   Tab,
   Button,
@@ -41,8 +41,7 @@ import {
 } from "@mui/material";
 import {
   Menu as MenuIcon,
-  Facebook as FacebookIcon,
-  Twitter as TwitterIcon,
+  Instagram as InstagramIcon,
   LinkedIn as LinkedInIcon,
   KeyboardArrowUp as KeyboardArrowUpIcon,
   Send as SendIcon,
@@ -202,32 +201,25 @@ const services = [
 
 const teamMembers = [
   {
-    name: "Sarah Johnson",
+    name: "Keshava",
     role: "CEO & Founder",
     photo: "https://randomuser.me/api/portraits/women/44.jpg",
     linkedin: "https://linkedin.com/in/sarahjohnson",
-    bio: "15+ years in AI and software development. Former Google AI researcher."
+    bio: "15+ years experience in software development."
   },
   {
-    name: "Michael Chen",
-    role: "CTO",
-    photo: "https://randomuser.me/api/portraits/men/46.jpg",
-    linkedin: "https://linkedin.com/in/michaelchen",
-    bio: "Expert in cloud architecture and scalable AI systems. MIT graduate."
+    name: "Tharun Tej Reddy",
+    role: "Head of Development & Co-Founder",
+    photo: "/Images/TharunImage.jpg",
+    linkedin: "https://in.linkedin.com/in/tharuntejreddythodimi",
+    bio: "8 years in AI and software development. IIIT Graduate."
   },
   {
-    name: "Emily Rodriguez",
-    role: "Head of Development",
-    photo: "https://randomuser.me/api/portraits/women/68.jpg",
-    linkedin: "https://linkedin.com/in/emilyrodriguez",
+    name: "Sree Mayee Kasireddy",
+    role: "Head of Development",  
+    photo: "/Images/raju.png",
+    linkedin: "https://www.linkedin.com/in/sreemayee/",
     bio: "Full-stack developer with passion for creating intuitive user experiences."
-  },
-  {
-    name: "David Kim",
-    role: "Head of Consulting",
-    photo: "https://randomuser.me/api/portraits/men/67.jpg",
-    linkedin: "https://linkedin.com/in/davidkim",
-    bio: "Business strategist helping companies leverage technology for growth."
   },
 ];
 
@@ -275,7 +267,7 @@ function ScrollTop(props) {
 
 function SectionTitle({ children, subtitle }) {
   return (
-    <Box sx={{ textAlign: "center", mb: 6, mt: 10 }}>
+    <Box sx={{ textAlign: "center", mb: 6, mt: 4 }}>
       <Typography
         variant="h3"
         component="h2"
@@ -296,7 +288,17 @@ function SectionTitle({ children, subtitle }) {
           {subtitle}
         </Typography>
       )}
-      <Divider sx={{ width: 80, height: 4, backgroundColor: theme.palette.secondary.main, mx: "auto", mt: 2, borderRadius: 2 }} />
+      <Divider 
+  sx={{
+    width: 60,
+    height: 4,
+    mx: "auto",
+    mt: 2,
+    borderRadius: 2,
+    background: `linear-gradient(90deg, ${theme.palette.secondary.light}, ${theme.palette.secondary.main}, ${theme.palette.secondary.light})`
+  }}
+/>
+      {/* <Divider sx={{ width: 80, height: 4, backgroundColor: theme.palette.secondary.main, mx: "auto", mt: 2, borderRadius: 2 }} /> */}
     </Box>
   );
 }
@@ -383,10 +385,13 @@ export default function App() {
       return;
     }
 
+    // const serviceID = "service_30jj32a";       // <-- Replace with your EmailJS service ID
+    // const templateID = "template_w3eyoud";     // <-- Replace with your EmailJS template ID
+    // const publicKey = "yamzBbv7zHDCtYIgr";       // <-- Replace with your EmailJS public key
+
     const serviceID = "service_ybsmmsc";       // <-- Replace with your EmailJS service ID
     const templateID = "template_x0uizi5";     // <-- Replace with your EmailJS template ID
     const publicKey = "LZ-lNhIuh8BJs6Bsr";       // <-- Replace with your EmailJS public key
-
 
     emailjs
       .send(
@@ -475,7 +480,7 @@ export default function App() {
               <Button 
                 variant="contained" 
                 size="large" 
-                onClick={() => navigateSection("contact")}
+                onClick={() => navigateSection("contactus")}
                 sx={{ 
                   px: 4, 
                   py: 1.5,
@@ -527,7 +532,7 @@ export default function App() {
           Trust our dedicated team to bring your ideas to life—on time, with quality, and
           with your goals as our top priority.
         </Typography>
-        <Box textAlign="center">
+        {/* <Box textAlign="center">
           <Button
             variant="contained"
             size="large"
@@ -536,7 +541,7 @@ export default function App() {
           >
             Get Started—Let's Build Together
           </Button>
-        </Box>
+        </Box> */}
       </Container>
     </Box>
   );
@@ -651,52 +656,107 @@ export default function App() {
     </Box>
   );
   
+  
+  const ServicesSection = () => {
+    const [visibleCount, setVisibleCount] = useState(6);
+  
+    // Function to check if near bottom of scroll
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const fullHeight = document.documentElement.scrollHeight;
+  
+      if (scrollTop + windowHeight + 100 >= fullHeight) {
+          // Load more services when close to bottom
+          setVisibleCount((prev) =>
+            Math.min(prev + 6, services.length)
+          );
+      }
+    };
+  
+    useEffect(() => {
+      // Only add scroll listener if we're in the services section
+      if (activeSection === 'services') {
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+      }
+    }, [activeSection]);
+  
+    const displayedServices = services.slice(0, visibleCount);
+  
+    return (
+      <Box id="services" sx={{ py: 8, bgcolor: "background.default" }}>
+        <Container maxWidth="lg">
+          <SectionTitle 
+            subtitle="We provide cutting-edge solutions to transform your business and drive innovation"
+          >
+            Our Services
+          </SectionTitle>
+  
+          <Grid container spacing={4} justifyContent="center">
+            {displayedServices.map(({ title, description, image }) => (
+              <Grid item xs={12} md={6} lg={4} key={title}>
+                <AnimatedSection>
+                  <FlipCard 
+                    title={title} 
+                    description={description} 
+                    frontImage={image} 
+                  />
+                </AnimatedSection>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+    );
+  };
+  
 
+  
+// const ServicesSection = () => {
+//   const [showAll, setShowAll] = useState(false);
 
-const ServicesSection = () => {
-  const [showAll, setShowAll] = useState(false);
+//   const displayedServices = showAll ? services : services.slice(0, 6);
 
-  const displayedServices = showAll ? services : services.slice(0, 6);
-
-  return (
-    <Box id="services" sx={{ py: 8, bgcolor: "background.default" }}>
-      <Container maxWidth="lg">
-        <SectionTitle 
-          subtitle="We provide cutting-edge solutions to transform your business and drive innovation"
-        >
-          Our Services
-        </SectionTitle>
+//   return (
+//     <Box id="services" sx={{ py: 8, bgcolor: "background.default" }}>
+//       <Container maxWidth="lg">
+//         <SectionTitle 
+//           subtitle="We provide cutting-edge solutions to transform your business and drive innovation"
+//         >
+//           Our Services
+//         </SectionTitle>
         
-        <Grid container spacing={4} justifyContent="center">
-          {displayedServices.map(({ title, description, image }) => (
-            <Grid item xs={12} md={6} lg={4} key={title}>
-              <AnimatedSection>
-                <FlipCard 
-                  title={title} 
-                  description={description} 
-                  frontImage={image} 
-                />
-              </AnimatedSection>
-            </Grid>
-          ))}
-        </Grid>
+//         <Grid container spacing={4} justifyContent="center">
+//           {displayedServices.map(({ title, description, image }) => (
+//             <Grid item xs={12} md={6} lg={4} key={title}>
+//               <AnimatedSection>
+//                 <FlipCard 
+//                   title={title} 
+//                   description={description} 
+//                   frontImage={image} 
+//                 />
+//               </AnimatedSection>
+//             </Grid>
+//           ))}
+//         </Grid>
         
-        {services.length > 6 && (
-          <Box textAlign="center" sx={{ mt: 6 }}>
-            <Button 
-              variant="outlined" 
-              size="large"
-              onClick={() => setShowAll(true)}
-              disabled={showAll}
-            >
-              {showAll ? "All Services Displayed" : "View All Services"}
-            </Button>
-          </Box>
-        )}
-      </Container>
-    </Box>
-  );
-};
+//         {services.length > 6 && (
+//           <Box textAlign="center" sx={{ mt: 6 }}>
+//             <Button 
+//               variant="outlined" 
+//               size="large"
+//               onClick={() => setShowAll(true)}
+//               disabled={showAll}
+//             >
+//               {showAll ? "All Services Displayed" : "View All Services"}
+//             </Button>
+//           </Box>
+//         )}
+//       </Container>
+//     </Box>
+//   );
+// };
 
   
 
@@ -834,159 +894,380 @@ const ServicesSection = () => {
     </Box>
   );
 
-  const ContactSection = () => (
-    <Box id="contactus" sx={{ py: 8, bgcolor: "background.paper" }}>
-      <Container maxWidth="lg">
-        <SectionTitle
-          subtitle="Get in touch with us for a free consultation"
-        >
-          Contact Us
-        </SectionTitle>
+
+
+
+
+  // const ContactSection = () => (
+  //   <Box 
+  //     id="contactus" 
+  //     sx={{ py: 8, bgcolor: "background.paper" }}
+  //     onClick={(e) => e.stopPropagation()}
+  //     onMouseDown={(e) => e.stopPropagation()}
+  //   >
+  //     <Container maxWidth="lg">
+  //       <SectionTitle
+  //         subtitle="Get in touch with us for a free consultation"
+  //       >
+  //         Contact Us
+  //       </SectionTitle>
         
-        <Grid container spacing={6}>
-          <Grid item xs={12} md={6}>
-            <AnimatedSection>
-              <Typography variant="h5" gutterBottom color="primary">
-                Let's Talk About Your Project
-              </Typography>
-              <Typography variant="body1" paragraph>
-                We're ready to help you transform your business with our cutting-edge solutions. 
-                Fill out the form and our team will get back to you within 24 hours.
-              </Typography>
+  //       <Grid container spacing={6}>
+  //         <Grid item xs={12} md={6}>
+  //           <AnimatedSection>
+  //             <Typography variant="h5" gutterBottom color="primary">
+  //               Let's Talk About Your Project
+  //             </Typography>
+  //             <Typography variant="body1" paragraph>
+  //               We're ready to help you transform your business with our cutting-edge solutions. 
+  //               Fill out the form and our team will get back to you within 24 hours.
+  //             </Typography>
               
-              <Box sx={{ mt: 4 }}>
-                <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
-                  <EmailIcon color="primary" sx={{ mr: 2 }} />
-                  <Box>
-                    <Typography variant="body2" color="text.secondary">Email</Typography>
-                    <Typography variant="body1">
-                      <Link href="mailto:digitalignitetech@gmail.com" color="inherit">
-                        digitalignitetech@gmail.com
-                      </Link>
-                    </Typography>
+  //             <Box sx={{ mt: 4 }}>
+  //               <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
+  //                 <EmailIcon color="primary" sx={{ mr: 2 }} />
+  //                 <Box>
+  //                   <Typography variant="body2" color="text.secondary">Email</Typography>
+  //                   <Typography variant="body1">
+  //                     <Link href="mailto:digitalignitetech@gmail.com" color="inherit">
+  //                       digitalignitetech@gmail.com
+  //                     </Link>
+  //                   </Typography>
+  //                 </Box>
+  //               </Box>
+                
+  //               <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
+  //                 <PhoneIcon color="primary" sx={{ mr: 2 }} />
+  //                 <Box>
+  //                   <Typography variant="body2" color="text.secondary">Phone</Typography>
+  //                   <Typography variant="body1">+1 585-281-9581</Typography>
+  //                 </Box>
+  //               </Box>
+                
+  //               <Box sx={{ display: "flex", alignItems: "flex-start", mb: 3 }}>
+  //                 <LocationOnIcon color="primary" sx={{ mr: 2, mt: 0.5 }} />
+  //                 <Box>
+  //                   <Typography variant="body2" color="text.secondary">Address</Typography>
+  //                   <Typography variant="body1">
+  //                     1234 Ignite Lane, Tech City, Country
+  //                   </Typography>
+  //                 </Box>
+  //               </Box>
+  //             </Box>
+              
+  //             <Box sx={{ mt: 4 }}>
+  //               <Typography variant="h6" gutterBottom>Follow Us</Typography>
+  //               <Box>
+  //                 {/* <IconButton href="https://www.facebook.com/digitalignitetechn" target="_blank">
+  //                   <FacebookIcon /> */}
+  //                 {/* </IconButton> */}
+  //                 <IconButton href="https://instagram.com/digitalignitetechn" target="_blank">
+  //                   <InstagramIcon />
+  //                 </IconButton>
+  //                 <IconButton href="https://www.linkedin.com/company/digital-ignite-technologies/" target="_blank">
+  //                   <LinkedInIcon />
+  //                 </IconButton>
+  //               </Box>
+  //             </Box>
+  //           </AnimatedSection>
+  //         </Grid>
+          
+  //         <Grid item xs={12} md={6}>
+  //           <AnimatedSection delay={200}>
+  //             <Paper elevation={3} sx={{ p: 4, borderRadius: 3 }}>
+  //               <input
+  //                 type="text"
+  //                 placeholder="Your Name"
+  //                 value={contactForm.name || ""}
+  //                 onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
+  //                 style={{
+  //                   width: '100%',
+  //                   padding: '12px',
+  //                   margin: '8px 0',
+  //                   border: '1px solid #ccc',
+  //                   borderRadius: '4px',
+  //                   fontSize: '16px'
+  //                 }}
+  //               />
+  //               <input
+  //                 type="email"
+  //                 placeholder="Email Address"
+  //                 value={contactForm.email || ""}
+  //                 onChange={(e) =>   setContactForm({ ...contactForm, name: e.target.value })}
+  //                 style={{
+  //                   width: '100%',
+  //                   padding: '12px',
+  //                   margin: '8px 0',
+  //                   border: '1px solid #ccc',
+  //                   borderRadius: '4px',
+  //                   fontSize: '16px'
+  //                 }}
+  //               />
+  //               <textarea
+  //                 placeholder="Your Message"
+  //                 rows={4}
+  //                 value={contactForm.message || ""}
+  //                 onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
+  //                 style={{
+  //                   width: '100%',
+  //                   padding: '12px',
+  //                   margin: '8px 0',
+  //                   border: '1px solid #ccc',
+  //                   borderRadius: '4px',
+  //                   fontSize: '16px',
+  //                   resize: 'vertical'
+  //                 }}
+  //               />
+  //               <Button
+  //                 variant="contained"
+  //                 fullWidth
+  //                 size="large"
+  //                 sx={{ mt: 3, py: 1.5 }}
+  //                 onClick={(e) => {
+  //                   e.preventDefault();
+  //                   e.stopPropagation();
+  //                   sendEmail();
+  //                 }}
+  //                 startIcon={<SendIcon />}
+  //               >
+  //                 Send Message
+  //               </Button>
+  //             </Paper>
+  //           </AnimatedSection>
+  //         </Grid>
+  //       </Grid>
+        
+  //       <Snackbar
+  //         open={snackbarOpen}
+  //         autoHideDuration={4000}
+  //         onClose={() => setSnackbarOpen(false)}
+  //         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+  //       >
+  //         <Alert 
+  //           onClose={() => setSnackbarOpen(false)} 
+  //           severity={snackbarSeverity} 
+  //           sx={{ width: "100%" }}
+  //           variant="filled"
+  //         >
+  //           {snackbarMsg}
+  //         </Alert>
+  //       </Snackbar>
+  //     </Container>
+  //   </Box>
+  // );
+
+  const ContactSection = () => {
+    // Move state inside the component
+    const [contactForm, setContactForm] = useState({ name: "", email: "", message: "" });
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMsg, setSnackbarMsg] = useState("");
+    const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+  
+    const sendEmail = (e) => {
+      if (e) e.preventDefault();
+      
+      if (!contactForm.name || !contactForm.email || !contactForm.message) {
+        setSnackbarMsg("Please fill all fields.");
+        setSnackbarSeverity("error");
+        setSnackbarOpen(true);
+        return;
+      }
+  
+      const serviceID = "service_ybsmmsc";
+      const templateID = "template_x0uizi5";
+      const publicKey = "LZ-lNhIuh8BJs6Bsr";
+  
+      emailjs
+        .send(
+          serviceID,
+          templateID,
+          {
+            from_name: contactForm.name,
+            from_email: contactForm.email,
+            message: contactForm.message,
+          },
+          publicKey
+        )
+        .then(() => {
+          setSnackbarMsg("Message sent successfully! We'll get back to you soon.");
+          setSnackbarSeverity("success");
+          setSnackbarOpen(true);
+          setContactForm({ name: "", email: "", message: "" });
+        })
+        .catch(() => {
+          setSnackbarMsg("Failed to send message. Please try again later.");
+          setSnackbarSeverity("error");
+          setSnackbarOpen(true);
+        });
+    };
+  
+    const handleInputChange = (field, value) => {
+      setContactForm(prev => ({ ...prev, [field]: value }));
+    };
+  
+    return (
+      <Box 
+        id="contactus" 
+        sx={{ py: 8, bgcolor: "background.paper" }}
+        onClick={(e) => e.stopPropagation()}
+        onMouseDown={(e) => e.stopPropagation()}
+      >
+        <Container maxWidth="lg">
+          <SectionTitle
+            subtitle="Get in touch with us for a free consultation"
+          >
+            Contact Us
+          </SectionTitle>
+          
+          <Grid container spacing={6}>
+            <Grid item xs={12} md={6}>
+              <AnimatedSection>
+                <Typography variant="h5" gutterBottom color="primary">
+                  Let's Talk About Your Project
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  We're ready to help you transform your business with our cutting-edge solutions. 
+                  Fill out the form and our team will get back to you within 24 hours.
+                </Typography>
+                
+                <Box sx={{ mt: 4 }}>
+                  <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
+                    <EmailIcon color="primary" sx={{ mr: 2 }} />
+                    <Box>
+                      <Typography variant="body2" color="text.secondary">Email</Typography>
+                      <Typography variant="body1">
+                        <Link href="mailto:digitalignitetech@gmail.com" color="inherit">
+                          digitalignitetech@gmail.com
+                        </Link>
+                      </Typography>
+                    </Box>
+                  </Box>
+                  
+                  <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
+                    <PhoneIcon color="primary" sx={{ mr: 2 }} />
+                    <Box>
+                      <Typography variant="body2" color="text.secondary">Phone</Typography>
+                      <Typography variant="body1">+1 585-281-9581</Typography>
+                    </Box>
+                  </Box>
+                  
+                  <Box sx={{ display: "flex", alignItems: "flex-start", mb: 3 }}>
+                    <LocationOnIcon color="primary" sx={{ mr: 2, mt: 0.5 }} />
+                    <Box>
+                      <Typography variant="body2" color="text.secondary">Address</Typography>
+                      <Typography variant="body1">
+                        1234 Ignite Lane, Tech City, Country
+                      </Typography>
+                    </Box>
                   </Box>
                 </Box>
                 
-                <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
-                  <PhoneIcon color="primary" sx={{ mr: 2 }} />
+                <Box sx={{ mt: 4 }}>
+                  <Typography variant="h6" gutterBottom>Follow Us</Typography>
                   <Box>
-                    <Typography variant="body2" color="text.secondary">Phone</Typography>
-                    <Typography variant="body1">+91 1234567890</Typography>
+                    <IconButton href="https://instagram.com/digitalignitetechn" target="_blank">
+                      <InstagramIcon />
+                    </IconButton>
+                    <IconButton href="https://www.linkedin.com/company/digital-ignite-technologies/" target="_blank">
+                      <LinkedInIcon />
+                    </IconButton>
                   </Box>
                 </Box>
-                
-                <Box sx={{ display: "flex", alignItems: "flex-start", mb: 3 }}>
-                  <LocationOnIcon color="primary" sx={{ mr: 2, mt: 0.5 }} />
-                  <Box>
-                    <Typography variant="body2" color="text.secondary">Address</Typography>
-                    <Typography variant="body1">
-                      1234 Ignite Lane, Tech City, Country
-                    </Typography>
-                  </Box>
-                </Box>
-              </Box>
-              
-              <Box sx={{ mt: 4 }}>
-                <Typography variant="h6" gutterBottom>Follow Us</Typography>
-                <Box>
-                  <IconButton href="https://www.facebook.com/digitalignitetechnologies" target="_blank">
-                    <FacebookIcon />
-                  </IconButton>
-                  <IconButton href="https://twitter.com/DigitalIgniteTech" target="_blank">
-                    <TwitterIcon />
-                  </IconButton>
-                  <IconButton href="https://www.linkedin.com/company/digital-ignite-technologies/" target="_blank">
-                    <LinkedInIcon />
-                  </IconButton>
-                </Box>
-              </Box>
-            </AnimatedSection>
+              </AnimatedSection>
+            </Grid>
+            
+            <Grid item xs={12} md={6}>
+              <AnimatedSection delay={200}>
+                <Paper 
+                  elevation={3} 
+                  sx={{ p: 4, borderRadius: 3 }}
+                  component="form"
+                  onSubmit={sendEmail}
+                >
+                  <TextField
+                    label="Your Name"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={contactForm.name}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <EmailIcon color="action" />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <TextField
+                    label="Email Address"
+                    variant="outlined"
+                    type="email"
+                    fullWidth
+                    margin="normal"
+                    value={contactForm.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <EmailIcon color="action" />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <TextField
+                    label="Your Message"
+                    variant="outlined"
+                    multiline
+                    rows={4}
+                    fullWidth
+                    margin="normal"
+                    value={contactForm.message}
+                    onChange={(e) => handleInputChange('message', e.target.value)}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <SendIcon color="action" />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    fullWidth
+                    size="large"
+                    sx={{ mt: 3, py: 1.5 }}
+                    startIcon={<SendIcon />}
+                  >
+                    Send Message
+                  </Button>
+                </Paper>
+              </AnimatedSection>
+            </Grid>
           </Grid>
           
-          <Grid item xs={12} md={6}>
-            <AnimatedSection delay={200}>
-              <Paper elevation={3} sx={{ p: 4, borderRadius: 3 }}>
-                <TextField
-                  label="Your Name"
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                  value={contactForm.name}
-                  onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <EmailIcon color="action" />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <TextField
-                  label="Email Address"
-                  variant="outlined"
-                  type="email"
-                  fullWidth
-                  margin="normal"
-                  value={contactForm.email}
-                  onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <EmailIcon color="action" />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <TextField
-                  label="Your Message"
-                  variant="outlined"
-                  multiline
-                  rows={4}
-                  fullWidth
-                  margin="normal"
-                  value={contactForm.message}
-                  onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SendIcon color="action" />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <Button
-                  variant="contained"
-                  fullWidth
-                  size="large"
-                  sx={{ mt: 3, py: 1.5 }}
-                  onClick={sendEmail}
-                  startIcon={<SendIcon />}
-                >
-                  Send Message
-                </Button>
-              </Paper>
-            </AnimatedSection>
-          </Grid>
-        </Grid>
-        
-        <Snackbar
-          open={snackbarOpen}
-          autoHideDuration={4000}
-          onClose={() => setSnackbarOpen(false)}
-          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-        >
-          <Alert 
-            onClose={() => setSnackbarOpen(false)} 
-            severity={snackbarSeverity} 
-            sx={{ width: "100%" }}
-            variant="filled"
+          <Snackbar
+            open={snackbarOpen}
+            autoHideDuration={4000}
+            onClose={() => setSnackbarOpen(false)}
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
           >
-            {snackbarMsg}
-          </Alert>
-        </Snackbar>
-      </Container>
-    </Box>
-  );
+            <Alert 
+              onClose={() => setSnackbarOpen(false)} 
+              severity={snackbarSeverity} 
+              sx={{ width: "100%" }}
+              variant="filled"
+            >
+              {snackbarMsg}
+            </Alert>
+          </Snackbar>
+        </Container>
+      </Box>
+    );
+  };
+
+  
   const HeroWithVideoBackground = () => (
     <Box
       sx={{
@@ -1131,7 +1412,7 @@ const ServicesSection = () => {
                             backgroundColor: theme.palette.primary.dark,
                           }
                         }}
-                        onClick={() => navigateSection("contact")}
+                        onClick={() => navigateSection("contactus")}
                       >
                         <ListItemText primary="Get Started" />
                       </ListItemButton>
@@ -1167,7 +1448,7 @@ const ServicesSection = () => {
                     />
                   ))}
                 </Tabs>
-                <Button 
+                {/* <Button 
                   variant="contained" 
                   onClick={() => navigateSection("contact")}
                   sx={{ 
@@ -1176,7 +1457,7 @@ const ServicesSection = () => {
                   }}
                 >
                   Get Started
-                </Button>
+                </Button> */}
               </Box>
             )}
           </Toolbar>
@@ -1216,8 +1497,8 @@ const ServicesSection = () => {
                   <IconButton href="https://www.facebook.com/digitalignitetechnologies" target="_blank" size="small">
                     <FacebookIcon fontSize="small" />
                   </IconButton>
-                  <IconButton href="https://twitter.com/DigitalIgniteTech" target="_blank" size="small">
-                    <TwitterIcon fontSize="small" />
+                  <IconButton href="https://instagram.com/digitalignitetechn" target="_blank" size="small">
+                    <InstagramIcon fontSize="small" />
                   </IconButton>
                   <IconButton href="https://www.linkedin.com/company/digital-ignite-technologies/" target="_blank" size="small">
                     <LinkedInIcon fontSize="small" />
@@ -1316,21 +1597,21 @@ const ServicesSection = () => {
               Transforming businesses with AI.
             </Typography>
             <Box sx={{ mt: 2 }}>
-              <IconButton
+              {/* <IconButton
                 href="https://www.facebook.com/digitalignitetechnologies"
                 target="_blank"
                 size="small"
                 aria-label="Facebook"
               >
                 <FacebookIcon fontSize="small" />
-              </IconButton>
+              </IconButton> */}
               <IconButton
-                href="https://twitter.com/DigitalIgniteTech"
+                href="https://instagram.com/digitalignitetechn"
                 target="_blank"
                 size="small"
                 aria-label="Twitter"
               >
-                <TwitterIcon fontSize="small" />
+                <InstagramIcon fontSize="small" />
               </IconButton>
               <IconButton
                 href="https://www.linkedin.com/company/digital-ignite-technologies/"
@@ -1398,7 +1679,7 @@ const ServicesSection = () => {
               <ListItem disablePadding sx={{ mb: 1, fontSize: "0.95rem" }}>
                 <PhoneIcon sx={{ fontSize: 16, mr: 1, color: "text.secondary" }} />
                 <Typography variant="body2" color="text.secondary" sx={{ fontSize: "0.95rem" }}>
-                  +91 1234567890
+                 +1 585-281-9581
                 </Typography>
               </ListItem>
               <ListItem disablePadding sx={{ mb: 1, display: "flex", alignItems: "flex-start" }}>
