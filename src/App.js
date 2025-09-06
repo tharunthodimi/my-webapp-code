@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import FlipCard from "./FlipCard";  // Adjust path as necessary
+import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
+import PeopleIcon from '@mui/icons-material/People';
+import VerifiedIcon from '@mui/icons-material/Verified';
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 
 import {
   AppBar,
@@ -227,13 +231,13 @@ const teamMembers = [
   },
 ];
 
-const clients = [
-  { name: "TechCorp", logo: "/Images/logo.jpeg" },
-  { name: "InnovateCo", logo: "/Images/logo.jpeg" },
-  { name: "DataSystems", logo: "/Images/logo.jpeg" },
-  { name: "FutureTech", logo: "/Images/logo.jpeg" },
-  { name: "SmartSolutions", logo: "/Images/logo.jpeg" },
-];
+// const clients = [
+//   { name: "TechCorp", logo: "/Images/logo.jpeg" },
+//   { name: "InnovateCo", logo: "/Images/logo.jpeg" },
+//   { name: "DataSystems", logo: "/Images/logo.jpeg" },
+//   { name: "FutureTech", logo: "/Images/logo.jpeg" },
+//   { name: "SmartSolutions", logo: "/Images/logo.jpeg" },
+// ];
 
 // Scroll to top component
 function ScrollTop(props) {
@@ -516,73 +520,137 @@ export default function App() {
     <Box sx={{ py: 6, bgcolor: "background.paper" }}>
       <Container maxWidth="lg">
         <Typography variant="h6" textAlign="center" color="text.secondary" sx={{ mb: 4 }}>
-          Trusted by innovative companies worldwide
+          Your Vision. Our Promise.
         </Typography>
-        <Grid container justifyContent="center" alignItems="center" spacing={4}>
-          {clients.map((client, index) => (
-            <Grid item key={index} xs={6} sm={4} md={2}>
-              <Box 
-                component="img" 
-                src={client.logo} 
-                alt={client.name}
-                sx={{ 
-                  height: 40, 
-                  filter: "grayscale(100%)", 
-                  opacity: 0.7, 
-                  transition: "all 0.3s ease",
-                  "&:hover": {
-                    filter: "grayscale(0%)",
-                    opacity: 1
-                  }
-                }} 
-              />
-            </Grid>
-          ))}
-        </Grid>
+        <Typography variant="subtitle1" textAlign="center" color="text.secondary" sx={{ mb: 4 }}>
+          We’re committed to delivering the solutions you need, exactly as you envision.
+          Trust our dedicated team to bring your ideas to life—on time, with quality, and
+          with your goals as our top priority.
+        </Typography>
+        <Box textAlign="center">
+          <Button
+            variant="contained"
+            size="large"
+            color="primary"
+            onClick={() => navigateSection("contact")}
+          >
+            Get Started—Let's Build Together
+          </Button>
+        </Box>
       </Container>
     </Box>
   );
+  
+  
+  // const ClientLogos = () => (
+  //   <Box sx={{ py: 6, bgcolor: "background.paper" }}>
+  //     <Container maxWidth="lg">
+  //       <Typography variant="h6" textAlign="center" color="text.secondary" sx={{ mb: 4 }}>
+  //         Trusted by innovative companies worldwide
+  //       </Typography>
+  //       <Grid container justifyContent="center" alignItems="center" spacing={4}>
+  //         {clients.map((client, index) => (
+  //           <Grid item key={index} xs={6} sm={4} md={2}>
+  //             <Box 
+  //               component="img" 
+  //               src={client.logo} 
+  //               alt={client.name}
+  //               sx={{ 
+  //                 height: 40, 
+  //                 filter: "grayscale(100%)", 
+  //                 opacity: 0.7, 
+  //                 transition: "all 0.3s ease",
+  //                 "&:hover": {
+  //                   filter: "grayscale(0%)",
+  //                   opacity: 1
+  //                 }
+  //               }} 
+  //             />
+  //           </Grid>
+  //         ))}
+  //       </Grid>
+  //     </Container>
+  //   </Box>
+  // );
 
+  // const StatsSection = () => (
+  //   <Box sx={{ py: 8, bgcolor: alpha(theme.palette.primary.main, 0.03) }}>
+  //     <Container maxWidth="lg">
+  //       <Grid container spacing={4} justifyContent="center">
+  //         <Grid item xs={6} sm={3} textAlign="center">
+  //           <Typography variant="h3" fontWeight="bold" color="primary">
+  //             150+
+  //           </Typography>
+  //           <Typography variant="h6" color="text.secondary">
+  //             Projects Completed
+  //           </Typography>
+  //         </Grid>
+  //         <Grid item xs={6} sm={3} textAlign="center">
+  //           <Typography variant="h3" fontWeight="bold" color="primary">
+  //             50+
+  //           </Typography>
+  //           <Typography variant="h6" color="text.secondary">
+  //             Happy Clients
+  //           </Typography>
+  //         </Grid>
+  //         <Grid item xs={6} sm={3} textAlign="center">
+  //           <Typography variant="h3" fontWeight="bold" color="primary">
+  //             15+
+  //           </Typography>
+  //           <Typography variant="h6" color="text.secondary">
+  //             Years Experience
+  //           </Typography>
+  //         </Grid>
+  //         <Grid item xs={6} sm={3} textAlign="center">
+  //           <Typography variant="h3" fontWeight="bold" color="primary">
+  //             25+
+  //           </Typography>
+  //           <Typography variant="h6" color="text.secondary">
+  //             Experts Team
+  //           </Typography>
+  //         </Grid>
+  //       </Grid>
+  //     </Container>
+  //   </Box>
+  // );
+   
   const StatsSection = () => (
     <Box sx={{ py: 8, bgcolor: alpha(theme.palette.primary.main, 0.03) }}>
       <Container maxWidth="lg">
         <Grid container spacing={4} justifyContent="center">
-          <Grid item xs={6} sm={3} textAlign="center">
-            <Typography variant="h3" fontWeight="bold" color="primary">
-              150+
-            </Typography>
-            <Typography variant="h6" color="text.secondary">
-              Projects Completed
-            </Typography>
-          </Grid>
-          <Grid item xs={6} sm={3} textAlign="center">
-            <Typography variant="h3" fontWeight="bold" color="primary">
-              50+
-            </Typography>
-            <Typography variant="h6" color="text.secondary">
-              Happy Clients
+          <Grid item xs={12} sm={6} md={3} textAlign="center">
+            <EmojiObjectsIcon sx={{ fontSize: 48, color: "primary.main" }} />
+            <Typography variant="h6" sx={{ mt: 2 }}>Innovation-Driven</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Cutting-edge technology, built for tomorrow.
             </Typography>
           </Grid>
-          <Grid item xs={6} sm={3} textAlign="center">
-            <Typography variant="h3" fontWeight="bold" color="primary">
-              15+
-            </Typography>
-            <Typography variant="h6" color="text.secondary">
-              Years Experience
+          <Grid item xs={12} sm={6} md={3} textAlign="center">
+            <PeopleIcon sx={{ fontSize: 48, color: "primary.main" }} />
+            <Typography variant="h6" sx={{ mt: 2 }}>Expert Team</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Passionate engineers, designers & consultants.
             </Typography>
           </Grid>
-          <Grid item xs={6} sm={3} textAlign="center">
-            <Typography variant="h3" fontWeight="bold" color="primary">
-              25+
+          <Grid item xs={12} sm={6} md={3} textAlign="center">
+            <VerifiedIcon sx={{ fontSize: 48, color: "primary.main" }} />
+            <Typography variant="h6" sx={{ mt: 2 }}>Built on Trust</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Integrity & openness in every partnership.
             </Typography>
-            <Typography variant="h6" color="text.secondary">
-              Experts Team
+          </Grid>
+          <Grid item xs={12} sm={6} md={3} textAlign="center">
+            <RocketLaunchIcon sx={{ fontSize: 48, color: "primary.main" }} />
+            <Typography variant="h6" sx={{ mt: 2 }}>Startup Spirit</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Agile, fast, ambitious for your success.
             </Typography>
           </Grid>
         </Grid>
       </Container>
     </Box>
   );
+  
 
 
 const ServicesSection = () => {
@@ -1118,7 +1186,7 @@ const ServicesSection = () => {
           {sections[activeSection]}
         </Box>
 
-        <Box
+        {/* <Box
           component="footer"
           sx={{
             py: 6,
@@ -1181,9 +1249,9 @@ const ServicesSection = () => {
                 <List dense disablePadding>
                   {services.map((service) => (
                     <ListItem key={service.title} disablePadding sx={{ mb: 1 }}>
-                      <Link href="#" color="text.secondary" underline="hover" sx={{ cursor: "pointer" }}>
+                      <Typography variant="body2" color="text.secondary">
                         {service.title}
-                      </Link>
+                      </Typography>
                     </ListItem>
                   ))}
                 </List>
@@ -1194,7 +1262,7 @@ const ServicesSection = () => {
                 <List dense disablePadding>
                   <ListItem disablePadding sx={{ mb: 1 }}>
                     <EmailIcon sx={{ fontSize: 16, mr: 1, color: "text.secondary" }} />
-                    <Link href="mailto:digitalignitetech@gmail.com" color="text.secondary" underline="hover">
+                    <Link href="mailto:digitalignitetech@gmail.com" color="text.secondary"  underline="none" sx={{ cursor: "pointer" }} >
                       digitalignitetech@gmail.com
                     </Link>
                   </ListItem>
@@ -1218,8 +1286,140 @@ const ServicesSection = () => {
               © {new Date().getFullYear()} Digital Ignite Technologies. All rights reserved.
             </Typography>
           </Container>
-        </Box>
+        </Box> */}
         
+
+    <Box
+      component="footer"
+      sx={{
+        py: 6,
+        px: { xs: 3, md: 6 },
+        backgroundColor: theme.palette.grey[100],
+        mt: "auto",
+      }}
+    >
+      <Container maxWidth="lg">
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+              <Box
+                component="img"
+                src="/Images/logo.jpeg"
+                alt="Logo"
+                sx={{ mr: 2, borderRadius: 1, width: 30, height: "auto" }}
+              />
+              <Typography variant="h6" fontWeight="bold" color="text.primary">
+                Digital Ignite Technologies
+              </Typography>
+            </Box>
+            <Typography variant="body2" color="text.primary" sx={{ mb: 2, fontSize: "0.95rem" }}>
+              Transforming businesses with AI.
+            </Typography>
+            <Box sx={{ mt: 2 }}>
+              <IconButton
+                href="https://www.facebook.com/digitalignitetechnologies"
+                target="_blank"
+                size="small"
+                aria-label="Facebook"
+              >
+                <FacebookIcon fontSize="small" />
+              </IconButton>
+              <IconButton
+                href="https://twitter.com/DigitalIgniteTech"
+                target="_blank"
+                size="small"
+                aria-label="Twitter"
+              >
+                <TwitterIcon fontSize="small" />
+              </IconButton>
+              <IconButton
+                href="https://www.linkedin.com/company/digital-ignite-technologies/"
+                target="_blank"
+                size="small"
+                aria-label="LinkedIn"
+              >
+                <LinkedInIcon fontSize="small" />
+              </IconButton>
+            </Box>
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={2}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: "bold" }}>
+              Company
+            </Typography>
+            <List dense disablePadding>
+              {["About Us", "Services", "Team", "Careers"].map((item) => (
+                <ListItem key={item} disablePadding sx={{ mb: 1 }}>
+                  <Link
+                    href="#"
+                    color="text.secondary"
+                    underline="hover"
+                    onClick={() => navigateSection(item.toLowerCase().replace(" ", ""))}
+                    sx={{ cursor: "pointer", fontSize: "0.95rem" }}
+                  >
+                    {item}
+                  </Link>
+                </ListItem>
+              ))}
+            </List>
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={3}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: "bold" }}>
+              Services
+            </Typography>
+            <List dense disablePadding>
+              {services.map((service) => (
+                <ListItem key={service.title} disablePadding sx={{ mb: 1 }}>
+                  <Typography variant="body2" color="text.secondary" sx={{ fontSize: "0.95rem" }}>
+                    {service.title}
+                  </Typography>
+                </ListItem>
+              ))}
+            </List>
+          </Grid>
+
+          <Grid item xs={12} md={3}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: "bold" }}>
+              Contact
+            </Typography>
+            <List dense disablePadding>
+              <ListItem disablePadding sx={{ mb: 1, display: "flex", alignItems: "center" }}>
+                <EmailIcon sx={{ fontSize: 16, mr: 1, color: "text.secondary" }} />
+                <Link
+                  href="mailto:digitalignitetech@gmail.com"
+                  color="text.secondary"
+                  underline="none"
+                  sx={{ cursor: "pointer", fontSize: "0.95rem" }}
+                >
+                  digitalignitetech@gmail.com
+                </Link>
+              </ListItem>
+              <ListItem disablePadding sx={{ mb: 1, fontSize: "0.95rem" }}>
+                <PhoneIcon sx={{ fontSize: 16, mr: 1, color: "text.secondary" }} />
+                <Typography variant="body2" color="text.secondary" sx={{ fontSize: "0.95rem" }}>
+                  +91 1234567890
+                </Typography>
+              </ListItem>
+              <ListItem disablePadding sx={{ mb: 1, display: "flex", alignItems: "flex-start" }}>
+                <LocationOnIcon sx={{ fontSize: 16, mr: 1, color: "text.secondary", mt: 0.4 }} />
+                <Typography variant="body2" color="text.secondary" sx={{ fontSize: "0.95rem" }}>
+                  1234 Ignite Lane, Tech City, Country
+                </Typography>
+              </ListItem>
+            </List>
+          </Grid>
+        </Grid>
+
+        <Divider sx={{ my: 4 }} />
+
+        <Typography variant="body2" color="text.secondary" textAlign="center" sx={{ fontSize: "0.85rem" }}>
+          © {new Date().getFullYear()} Digital Ignite Technologies. All rights reserved.
+        </Typography>
+      </Container>
+    </Box>
+
+
         <ScrollTop>
           <Fab color="primary" size="medium" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
