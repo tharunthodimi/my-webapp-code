@@ -4,7 +4,8 @@ import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
 import PeopleIcon from '@mui/icons-material/People';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
-
+import { AutoAwesome, GppGood, Star, Group, Handshake } from '@mui/icons-material'
+import { motion } from 'framer-motion'
 import { Container, Grid } from "@mui/material";
 
 import {
@@ -14,6 +15,7 @@ import {
   IconButton,
   Drawer,
   List,
+  Chip,
   ListItem,
   ListItemButton,
   ListItemText,
@@ -51,6 +53,8 @@ import {
 } from "@mui/icons-material";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import emailjs from "@emailjs/browser";
+
+
 
 // Enhanced theme with more professional color scheme
 const theme = createTheme({
@@ -712,127 +716,555 @@ export default function App() {
   };
   
 
-  
-// const ServicesSection = () => {
-//   const [showAll, setShowAll] = useState(false);
-
-//   const displayedServices = showAll ? services : services.slice(0, 6);
-
-//   return (
-//     <Box id="services" sx={{ py: 8, bgcolor: "background.default" }}>
+//   const AboutSection = () => (
+//     <Box id="aboutus" sx={{ py: 8, bgcolor: "background.paper" }}>
 //       <Container maxWidth="lg">
-//         <SectionTitle 
-//           subtitle="We provide cutting-edge solutions to transform your business and drive innovation"
-//         >
-//           Our Services
+//         <SectionTitle subtitle="Learn about our mission, values, and what makes us different">
+//           About Us
 //         </SectionTitle>
-        
-//         <Grid container spacing={4} justifyContent="center">
-//           {displayedServices.map(({ title, description, image }) => (
-//             <Grid item xs={12} md={6} lg={4} key={title}>
-//               <AnimatedSection>
-//                 <FlipCard 
-//                   title={title} 
-//                   description={description} 
-//                   frontImage={image} 
-//                 />
-//               </AnimatedSection>
-//             </Grid>
-//           ))}
+  
+//         <Grid container spacing={6} alignItems="center" sx={{ mb: 4 }}>
+
+//           <Grid item xs={12} md={6}>
+//             <Typography variant="h4" gutterBottom sx={{ color: "primary.main", fontWeight: 600 }}>
+//               Welcome to Digital Ignite Technologies
+//             </Typography>
+//             <Typography variant="body1" paragraph sx={{ fontSize: "1.1rem", lineHeight: 1.7 }}>
+//               Where innovation meets excellence! We are a startup dedicated to
+//               transforming the way businesses operate through cutting-edge software
+//               solutions.
+//             </Typography>
+//           </Grid>
 //         </Grid>
-        
-//         {services.length > 6 && (
-//           <Box textAlign="center" sx={{ mt: 6 }}>
-//             <Button 
-//               variant="outlined" 
-//               size="large"
-//               onClick={() => setShowAll(true)}
-//               disabled={showAll}
-//             >
-//               {showAll ? "All Services Displayed" : "View All Services"}
-//             </Button>
-//           </Box>
-//         )}
+  
+// <Box sx={{ mb: 6, mt: 2 }}>
+//   <Box sx={{ textAlign: "center", mb: 4 }}>
+//     <Typography
+//       variant="h4"
+//       component="h2"
+//       sx={{ 
+//         fontWeight: "bold", 
+//         mb: 2,
+//         background: `linear(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+//         backgroundClip: "text",
+//         WebkitBackgroundClip: "text",
+//         color: "transparent",
+//         display: "inline-block"
+//       }}
+//     >
+//       Vision and Mission
+//     </Typography>
+//   </Box>
+
+//   <Grid container spacing={4} justifyContent="center">
+//     <Grid item xs={12} md={10} lg={8}>
+//       <Box sx={{ mb: 3 }}>
+//         <Typography variant="h5" gutterBottom sx={{ 
+//           color: "secondary.main",
+//           fontWeight: 600,
+//           display: "flex",
+//           alignItems: "center",
+//           gap: 1
+//         }}>
+//           <EmojiObjectsIcon sx={{ fontSize: 28 }} />
+//           Our Vision
+//         </Typography>
+//         <Typography variant="body1" sx={{ 
+//           fontSize: "1.1rem",
+//           lineHeight: 1.7,
+//           pl: 4
+//         }}>
+//           To be a global leader in software innovation, empowering businesses to
+//           achieve their full potential through technology.
+//         </Typography>
+//       </Box>
+
+//       <Box>
+//         <Typography variant="h5" gutterBottom sx={{ 
+//           color: "secondary.main",
+//           fontWeight: 600,
+//           display: "flex",
+//           alignItems: "center",
+//           gap: 1
+//         }}>
+//           <RocketLaunchIcon sx={{ fontSize: 28 }} />
+//           Our Mission
+//         </Typography>
+//         <Typography variant="body1" sx={{ 
+//           fontSize: "1.1rem",
+//           lineHeight: 1.7,
+//           pl: 4
+//         }}>
+//           To deliver exceptional software solutions that meet the unique needs of our clients.
+//         </Typography>
+//       </Box>
+//     </Grid>
+//   </Grid>
+// </Box>
+//         <Box sx={{ mb: 8 }}>
+//           <Typography variant="h4" gutterBottom sx={{ 
+//             textAlign: "center", 
+//             color: "primary.main",
+//             mb: 4,
+//             display: "flex",
+//             alignItems: "center",
+//             justifyContent: "center",
+//             gap: 2
+//           }}>
+//             <VerifiedIcon sx={{ fontSize: 36 }} />
+//             Our Values
+//           </Typography>
+          
+//           <Grid container spacing={3}>
+//             {[
+//               { name: "Innovation", desc: "We embrace change and continuously seek new ways to improve our solutions." },
+//               { name: "Integrity", desc: "We conduct business with honesty and transparency." },
+//               { name: "Excellence", desc: "We deliver high-quality solutions that exceed expectations." },
+//               { name: "Customer Focus", desc: "We prioritize clients' needs." },
+//               { name: "Collaboration", desc: "We foster teamwork and collaboration." }
+//             ].map((value, index) => (
+//               <Grid item xs={12} sm={6} md={4} key={index}>
+//                 <Card sx={{ 
+//                   p: 3, 
+//                   textAlign: "center", 
+//                   height: "100%",
+//                   transition: "transform 0.2s, box-shadow 0.2s",
+//                   "&:hover": {
+//                     transform: "translateY(-4px)",
+//                     boxShadow: "0 8px 24px rgba(0,0,0,0.12)"
+//                   }
+//                 }}>
+//                   <Box sx={{ 
+//                     width: 60, 
+//                     height: 60, 
+//                     borderRadius: "50%", 
+//                     bgcolor: "primary.main", 
+//                     display: "flex", 
+//                     alignItems: "center", 
+//                     justifyContent: "center",
+//                     mx: "auto",
+//                     mb: 2
+//                   }}>
+//                     <Typography variant="h6" sx={{ color: "white", fontWeight: "bold" }}>
+//                       {index + 1}
+//                     </Typography>
+//                   </Box>
+//                   <Typography variant="h6" gutterBottom sx={{ color: "primary.main" }}>
+//                     {value.name}
+//                   </Typography>
+//                   <Typography variant="body2" color="text.secondary">
+//                     {value.desc}
+//                   </Typography>
+//                 </Card>
+//               </Grid>
+//             ))}
+//           </Grid>
+//         </Box>
 //       </Container>
 //     </Box>
 //   );
-// };
+  
+const AboutSection = () => (
+  <Box id="aboutus" sx={{ 
+    py: 10, 
+    bgcolor: "background.paper",
+    position: "relative",
+    overflow: "hidden",
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      width: "300px",
+      height: "300px",
+      top: "-100px",
+      left: "-100px",
+      borderRadius: "50%",
+      background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.1)} 0%, transparent 70%)`,
+      zIndex: 0,
+    },
+    "&::after": {
+      content: '""',
+      position: "absolute",
+      width: "400px",
+      height: "400px",
+      bottom: "-150px",
+      right: "-150px",
+      borderRadius: "50%",
+      background: `linear-gradient(135deg, transparent 30%, ${alpha(theme.palette.secondary.main, 0.1)} 100%)`,
+      zIndex: 0,
+    }
+  }}>
+    <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
+      <SectionTitle 
+        subtitle="Learn about our mission, values, and what makes us different"
+        sx={{ mb: 8 }}
+      >
+        About Us
+      </SectionTitle>
+  
+      <Grid container spacing={6} alignItems="center" sx={{ mb: 10 }}>
+        <Grid item xs={12} md={6}>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <Typography 
+              variant="h3" 
+              gutterBottom 
+              sx={{ 
+                color: "primary.main", 
+                fontWeight: 700,
+                mb: 3,
+                background: `linear(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                color: "transparent",
+              }}
+            >
+              Welcome to Digital Ignite Technologies
+            </Typography>
+            <Typography 
+              variant="body1" 
+              paragraph 
+              sx={{ 
+                fontSize: "1.1rem", 
+                lineHeight: 1.8,
+                color: "text.secondary",
+                mb: 3
+              }}
+            >
+              Where innovation meets excellence! We are a startup dedicated to
+              transforming the way businesses operate through cutting-edge software
+              solutions.
+            </Typography>
+            
+            <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
+              {["Innovation", "Excellence", "Transformation"].map((tag, index) => (
+                <Chip
+                  key={index}
+                  label={tag}
+                  sx={{
+                    bgcolor: alpha(theme.palette.primary.main, 0.1),
+                    color: "primary.dark",
+                    fontWeight: 600,
+                    px: 1,
+                    py: 2
+                  }}
+                />
+              ))}
+            </Box>
+          </motion.div>
+        </Grid>
+        
+        <Grid item xs={12} md={6}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <Box
+              sx={{
+                position: "relative",
+                height: 400,
+                background: `linear(45deg, ${alpha(theme.palette.primary.main, 0.2)} 0%, ${alpha(theme.palette.secondary.main, 0.2)} 100%)`,
+                borderRadius: 4,
+                overflow: "hidden",
+                boxShadow: `0 15px 35px ${alpha(theme.palette.primary.dark, 0.1)}`,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+              }}
+            >
+              <Box
+                component="img"
+                src="/api/placeholder/500/400"
+                alt="Digital Ignite Technologies"
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  opacity: 0.3
+                }}
+              />
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: `radial-gradient(circle at 30% 70%, ${alpha(theme.palette.primary.main, 0.3)} 0%, transparent 50%)`,
+                }}
+              />
+              <Box sx={{ position: "absolute", textAlign: "center", p: 3 }}>
+                <Typography 
+                  variant="h5" 
+                  sx={{ 
+                    color: "primary.dark", 
+                    fontWeight: 600,
+                    mb: 1
+                  }}
+                >
+                  Transforming Businesses
+                </Typography>
+                <Typography 
+                  variant="body2" 
+                  sx={{ 
+                    color: "text.secondary",
+                    maxWidth: 300,
+                    mx: "auto"
+                  }}
+                >
+                  Through innovative digital solutions and cutting-edge technology
+                </Typography>
+              </Box>
+            </Box>
+          </motion.div>
+        </Grid>
+      </Grid>
+  
+      <Box sx={{ mb: 10 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+        >
+          <Box sx={{ textAlign: "center", mb: 6 }}>
+            <Typography
+              variant="h3"
+              component="h2"
+              sx={{ 
+                fontWeight: 700, 
+                mb: 2,
+                background: `linear(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                color: "transparent",
+                display: "inline-block"
+              }}
+            >
+              Vision and Mission
+            </Typography>
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                color: "text.secondary",
+                maxWidth: 600,
+                mx: "auto",
+                fontSize: "1.1rem"
+              }}
+            >
+              Our guiding principles that drive everything we do
+            </Typography>
+          </Box>
+        </motion.div>
 
-  
+        <Grid container spacing={6} justifyContent="center" sx={{ mt: 2 }}>
+          <Grid item xs={12} md={5}>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <Card sx={{ 
+                p: 4, 
+                height: "100%",
+                background: `linear(135deg, ${alpha(theme.palette.primary.main, 0.05)} 0%, ${alpha(theme.palette.secondary.main, 0.05)} 100%)`,
+                border: `1px solid ${alpha(theme.palette.primary.main, 0.1)}`,
+                borderRadius: 4,
+                boxShadow: `0 10px 30px ${alpha(theme.palette.primary.main, 0.1)}`,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center"
+              }}>
+                <Box sx={{
+                  width: 80,
+                  height: 80,
+                  borderRadius: "50%",
+                  bgcolor: "primary.main",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  mb: 3,
+                  boxShadow: `0 8px 20px ${alpha(theme.palette.primary.main, 0.3)}`
+                }}>
+                  <EmojiObjectsIcon sx={{ fontSize: 40, color: "white" }} />
+                </Box>
+                <Typography variant="h5" gutterBottom sx={{ 
+                  color: "primary.main",
+                  fontWeight: 600,
+                  mb: 2
+                }}>
+                  Our Vision
+                </Typography>
+                <Typography variant="body1" sx={{ 
+                  lineHeight: 1.7,
+                  color: "text.secondary",
+                  fontSize: "1.1rem"
+                }}>
+                  To be a global leader in software innovation, empowering businesses to
+                  achieve their full potential through technology.
+                </Typography>
+              </Card>
+            </motion.div>
+          </Grid>
 
-  const AboutSection = () => (
-    <Box id="aboutus" sx={{ py: 8, bgcolor: "background.paper" }}>
-      <Container maxWidth="md">
-        <SectionTitle subtitle="Learn about our mission, values, and what makes us different">
-          About Us
-        </SectionTitle>
-  
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h3" gutterBottom>
-            Welcome to Digital Ignite Technologies
-          </Typography>
-          <Typography paragraph>
-            Where innovation meets excellence! We are a startup dedicated to
-            transforming the way businesses operate through cutting-edge software
-            solutions.
-          </Typography>
-        </Box>
-  
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h4" gutterBottom>
-            Vision and Mission
-          </Typography>
-  
-          <Typography variant="h5" gutterBottom>
-            Vision
-          </Typography>
-          <Typography paragraph>
-            To be a global leader in software innovation, empowering businesses to
-            achieve their full potential through technology.
-          </Typography>
-  
-          <Typography variant="h5" gutterBottom>
-            Mission
-          </Typography>
-          <Typography paragraph>
-            To deliver exceptional software solutions that meet the unique needs of our clients.
-          </Typography>
-        </Box>
-  
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h4" gutterBottom>
+          <Grid item xs={12} md={5}>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <Card sx={{ 
+                p: 4, 
+                height: "100%",
+                background: `linear(135deg, ${alpha(theme.palette.secondary.main, 0.05)} 0%, ${alpha(theme.palette.primary.main, 0.05)} 100%)`,
+                border: `1px solid ${alpha(theme.palette.secondary.main, 0.1)}`,
+                borderRadius: 4,
+                boxShadow: `0 10px 30px ${alpha(theme.palette.secondary.main, 0.1)}`,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center"
+              }}>
+                <Box sx={{
+                  width: 80,
+                  height: 80,
+                  borderRadius: "50%",
+                  bgcolor: "secondary.main",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  mb: 3,
+                  boxShadow: `0 8px 20px ${alpha(theme.palette.secondary.main, 0.3)}`
+                }}>
+                  <RocketLaunchIcon sx={{ fontSize: 40, color: "white" }} />
+                </Box>
+                <Typography variant="h5" gutterBottom sx={{ 
+                  color: "secondary.main",
+                  fontWeight: 600,
+                  mb: 2
+                }}>
+                  Our Mission
+                </Typography>
+                <Typography variant="body1" sx={{ 
+                  lineHeight: 1.7,
+                  color: "text.secondary",
+                  fontSize: "1.1rem"
+                }}>
+                  To deliver exceptional software solutions that meet the unique needs of our clients.
+                </Typography>
+              </Card>
+            </motion.div>
+          </Grid>
+        </Grid>
+      </Box>
+      
+      <Box sx={{ mb: 8 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+        >
+          <Typography variant="h3" gutterBottom sx={{ 
+            textAlign: "center", 
+            color: "primary.main",
+            mb: 2,
+            fontWeight: 700,
+            background: `linear(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+            backgroundClip: "text",
+            WebkitBackgroundClip: "text",
+            color: "transparent",
+          }}>
             Our Values
           </Typography>
-          <Box component="ul" sx={{ pl: 3 }}>
-            <li><Typography><strong>Innovation</strong>: We embrace change and continuously seek new ways to improve our solutions.</Typography></li>
-            <li><Typography><strong>Integrity</strong>: We conduct business with honesty and transparency.</Typography></li>
-            <li><Typography><strong>Excellence</strong>: We deliver high-quality solutions that exceed expectations.</Typography></li>
-            <li><Typography><strong>Customer Focus</strong>: We prioritize clients’ needs.</Typography></li>
-            <li><Typography><strong>Collaboration</strong>: We foster teamwork and collaboration.</Typography></li>
-          </Box>
-        </Box>
-  
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h4" gutterBottom>
-            Our Story
+          <Typography 
+            variant="body1" 
+            sx={{ 
+              textAlign: "center",
+              color: "text.secondary",
+              maxWidth: 600,
+              mx: "auto",
+              mb: 6,
+              fontSize: "1.1rem"
+            }}
+          >
+            The core principles that guide our actions and decisions
           </Typography>
-          <Typography paragraph>
-            Digital Ignite Technologies was founded by passionate engineers and AI enthusiasts dedicated to innovative solutions.
-          </Typography>
-        </Box>
-  
-        <Box>
-          <Typography variant="h4" gutterBottom>
-            Our Team
-          </Typography>
-          <Typography paragraph>
-            A skilled team with diverse backgrounds united by delivering exceptional solutions.
-          </Typography>
-        </Box>
-      </Container>
-    </Box>
-  );
-  
+        </motion.div>
+        
+        <Grid container spacing={4}>
+          {[
+            { name: "Innovation", desc: "We embrace change and continuously seek new ways to improve our solutions.", icon: <AutoAwesome /> },
+            { name: "Integrity", desc: "We conduct business with honesty and transparency.", icon: <GppGood /> },
+            { name: "Excellence", desc: "We deliver high-quality solutions that exceed expectations.", icon: <Star /> },
+            { name: "Customer Focus", desc: "We prioritize clients' needs.", icon: <Group /> },
+            { name: "Collaboration", desc: "We foster teamwork and collaboration.", icon: <Handshake /> }
+          ].map((value, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card sx={{ 
+                  p: 4, 
+                  textAlign: "center", 
+                  height: "100%",
+                  transition: "all 0.3s ease",
+                  background: `linear(135deg, ${alpha(theme.palette.primary.main, 0.03)} 0%, ${alpha(theme.palette.secondary.main, 0.03)} 100%)`,
+                  border: `1px solid ${alpha(theme.palette.primary.main, 0.1)}`,
+                  borderRadius: 4,
+                  boxShadow: "0 5px 15px rgba(0,0,0,0.05)",
+                  "&:hover": {
+                    transform: "translateY(-8px)",
+                    boxShadow: `0 15px 35px ${alpha(theme.palette.primary.main, 0.15)}`,
+                    borderColor: alpha(theme.palette.primary.main, 0.3),
+                  }
+                }}>
+                  <Box sx={{ 
+                    width: 70, 
+                    height: 70, 
+                    borderRadius: "50%", 
+                    bgcolor: "primary.main", 
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "center",
+                    mx: "auto",
+                    mb: 3,
+                    boxShadow: `0 8px 20px ${alpha(theme.palette.primary.main, 0.3)}`
+                  }}>
+                    <Box sx={{ color: "white", fontSize: 30 }}>
+                      {value.icon}
+                    </Box>
+                  </Box>
+                  <Typography variant="h6" gutterBottom sx={{ 
+                    color: "primary.main", 
+                    fontWeight: 600,
+                    mb: 2
+                  }}>
+                    {value.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                    {value.desc}
+                  </Typography>
+                </Card>
+              </motion.div>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    </Container>
+  </Box>
+);
 
   const TeamSection = () => (
     <Box id="team" sx={{ py: 8, bgcolor: "background.default" }}>
